@@ -1,0 +1,24 @@
+CyArt Report Vapt Task-2 
+------------------------
+Target IP (Metasploitable 2 VM) - 192.168.132.135
+1st scan - nmap -sV 192.168.132.135 -oN nmap_cyart_basic.txt
+Findings:
+1.On port 21 service ftp is running version is vsftpd 2.3.4 which is highly vulnerable which has a backdoor according to CVE-2011-2523.
+-vsftpd 2.3.4 downloaded between 20110630 and 20110703 contains a backdoor which opens a shell on port 6200/tcp.
+2.On port 53 service domain is running version is ISC BIND 9.4.2 which is highly vulnerable to DoS attack according to CVE-2008-4163 and has a base score of 7.8.
+-Unspecified vulnerability in ISC BIND 9.3.5-P2-W1, 9.4.2-P2-W1, and 9.5.0-P2-W1 on Windows allows remote attackers to cause a denial of service.
+3.On port 6667 service irc is running version UnrealIRCd according to web it has a malicious backdoor installed with it.
+
+2nd scan - nmap -p- -T4 192.168.132.135 -oN nmap_cyart_allport.txt
+Findings:
+Total 30 ports are running with services like fpt, rpcbind, irc, netbios-ssn etc.
+
+3rd scan nmap --script=vuln 192.192.132.135 -oN nmap_cyart_vuln.txt
+Findings:
+Found vulnerabilities like vsFTPd version 2.3.4 backdoor CVE-2011-2523, SSL Podlle Information leak CVE-2014-3066,found irc-unrealircd-backdoor, found different http-enum folders like /admin /admin/index.html /manager/html/upload.
+Vulnerable to slowloris DoS Attack CVE-2007-6750, SSl/TLS MiTM vulnerability and many more.
+
+Nikto Scan Result:
+command - nikto -h http://192.168.132.135:80/dvwa/login.php -output nikto_cyart.txt
+
+Findings:

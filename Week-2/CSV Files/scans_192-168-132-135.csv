@@ -1,0 +1,11 @@
+Scan ID,Vulnerability,CVSS Score,Priority,Host,Port,Evidence,Notes
+001,vsftpd 2.3.4 backdoor (remote root),10.0,Critical,192.168.132.135,21,nmap: vsftpd 2.3.4,Exploit: CVE-2011-2523
+002,Apache 2.2.8 / PHP 5.2.4 - source disclosure,9.1,Critical,192.168.132.135,80,Nikto: /dvwa/login.php?-s; x-powered-by: PHP/5.2.4,Patch/upgrade PHP & Apache
+003,Exposed backup/config files (.tar/.pem/.jks/.war),7.5,High,192.168.132.135,80,Nikto discovered many backup filenames,Restrict access/remove files
+004,SIPS v0.2.2 user-info disclosure,8.6,High,192.168.132.135,80,Nikto: /dvwa/login.php/sips/...,Investigate SIPS component
+005,Insecure cookies (no HttpOnly),6.1,Medium,192.168.132.135,80,Nikto: PHPSESSID and security cookies missing HttpOnly,Set HttpOnly flag
+006,Missing X-Frame-Options / X-Content-Type-Options,4.3,Medium,192.168.132.135,80,Nikto: missing headers,Add headers via server config
+007,HTTP TRACE enabled (XST),5.0,Medium,192.168.132.135,80,Nikto: TRACE allowed,Disable TRACE
+008,Samba (SMB) - null session / info exposure,7.5,High,192.168.132.135,139/445,nmap & smbclient indicate Samba 3.x - 4.x,Harden Samba; restrict anonymous
+009,Bindshell service (port 1524) - root shell,10.0,Critical,192.168.132.135,1524,nmap shows bindshell (Metasploitable),Remove service/block port
+010,Java RMI (1099) - RMI registry exposure,9.0,Critical,192.168.132.135,1099,nmap: java-rmi / grmiregistry,Restrict access or patch RMI services
