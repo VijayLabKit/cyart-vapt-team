@@ -1,0 +1,6 @@
+Remediation for DVWA (192.168.132.130):
+- Sanitize and parameterize SQL inputs; use prepared statements.
+- Set least privilege on DB user (no admin rights for web app).
+- Enforce input validation and output encoding.
+- Patch and update web stack; remove sample/insecure apps from production.
+- Enable Web Application Firewall and restrict admin interfaces.
