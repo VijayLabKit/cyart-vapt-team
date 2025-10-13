@@ -1,0 +1,3 @@
+Test ID,Vulnerability,Severity,Target URL,PoC,Status,Recommendation
+001,SQL Injection,Critical,http://192.168.1.200/login,id=1' OR NOT 9537=9537#,Confirmed,Use parameterized queries; restrict DB privileges; sanitize input; hide SQL errors
+002,Reflected XSS,Medium,http://192.168.1.200/form,<script>alert('XSS')</script>,Confirmed,Output encode user data; implement CSP; validate input

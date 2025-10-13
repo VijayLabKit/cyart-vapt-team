@@ -1,0 +1,1 @@
+Performed OWASP Top 10 testing against DVWA VM using Burp Suite, sqlmap and manual payloads. Found critical SQL injection at /login exposing user credentials and medium reflected XSS at /form. Verified authentication weaknesses and session handling. Recommendations: parameterized queries, output encoding, session flags, and input validation. Evidence and commands included.

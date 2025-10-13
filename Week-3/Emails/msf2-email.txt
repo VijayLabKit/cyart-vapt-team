@@ -1,0 +1,6 @@
+Hi Development Team,
+
+During an authorized assessment of the lab server at 192.168.132.135, I confirmed a reflected cross-site scripting (XSS) vulnerability in DVWA's name/search parameter. An attacker could inject JavaScript that results in session hijacking, credential disclosure, or execution of actions as authenticated users. Immediate mitigations: enforce server-side input validation, apply output encoding and escaping, restrict reflected content, and implement a Content Security Policy. I have captured request and response artifacts and stored SHA-256 hashes in the lab evidence folder. Please schedule an emergency remediation window immediately and notify me to assist with verification and retesting.
+
+Regards,
+Ishan Chowdhury
