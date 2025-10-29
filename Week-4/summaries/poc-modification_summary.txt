@@ -1,0 +1,1 @@
+Modified a public PoC to target MrRobot VM. The script exploited an insecure upload/deserialize endpoint, uploaded a web shell, and triggered it to obtain a reverse shell. The payload delivered a stable interactive shell (user 'robots'), enabling further local enumeration and privilege escalation.

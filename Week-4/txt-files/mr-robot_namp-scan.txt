@@ -1,0 +1,51 @@
+# Nmap 7.95 scan initiated Tue Oct 28 02:36:19 2025 as: /usr/lib/nmap/nmap -sCV -vv -oN mr-robot_namp-scan.txt 10.201.74.195
+Nmap scan report for 10.201.74.195
+Host is up, received echo-reply ttl 60 (0.70s latency).
+Scanned at 2025-10-28 02:36:22 PDT for 104s
+Not shown: 997 filtered tcp ports (no-response)
+PORT    STATE SERVICE  REASON         VERSION
+22/tcp  open  ssh      syn-ack ttl 60 OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 59:e7:a1:b6:a5:49:13:33:8e:a0:ec:ad:c3:d9:96:ec (RSA)
+| ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDE9lXeSbbv41vwq5atnY8fB/uyb4x3w3P+jTmUwBoax+rZEzp3eXOsz/54fmqNd7bjgBpzqy68kDOhYxG5oCXsDj/JaOzIa9axzaSQV85qwR+IAPqtfrGlviAVGhNn3PPpVYujNEob2jjB29+VTiBMpP47i+LtfbXEOrV2ciPAFllGEp3KLiX073oRqMEaw39B8xjS+ZKY0tcVESMnIkohD7cv84Tfu/72Qsbyj0NQ8DfFk9ONrJvBEzlvpp2yXOJ4Trm6NnJyILd881vkfr9mHq48JBhgACtJXLmlvFRniadbs6sJBM5qvqOEmceoIaSVfZ+laWpPG6CY5gHJW0GKF4H0EobQB3/ElTWqcpcWMBu0Czw4WnQefWjeFbfuq5iE/fPKGyYcZy/7F3WJJVXjyzBeLKrApKHX/THt8IReIcrDjM3LYviEvzFoW7ZlGhuUnw31bGNYjqx2KvkrZq7K4FT+w/uRHVDlC4y3lCkNhbl8HFErOOkGymfkCYiD81E=
+|   256 3f:d3:ce:28:59:93:54:d3:40:68:d2:63:15:95:b3:af (ECDSA)
+| ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFZYxwgcGDOgL6/ORu5q3roo8huXrts+TVbU7jY2cDo9tQzg8WTB6TrufPKNU+MW2Ol45Oug8ggRH5kw5h5Zhsc=
+|   256 4c:bb:3c:99:e7:ef:db:97:e2:05:0e:1a:5c:1d:b9:3d (ED25519)
+|_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEQfBnnTflJc2LweCwbJIzLMhKOsy/ygEm0gL2s8K3EJ
+80/tcp  open  http     syn-ack ttl 60 Apache httpd
+|_http-server-header: Apache
+|_http-favicon: Unknown favicon MD5: D41D8CD98F00B204E9800998ECF8427E
+|_http-title: Site doesn't have a title (text/html).
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+443/tcp open  ssl/http syn-ack ttl 60 Apache httpd
+|_http-favicon: Unknown favicon MD5: D41D8CD98F00B204E9800998ECF8427E
+|_http-title: 400 Bad Request
+|_http-server-header: Apache
+| http-methods: 
+|_  Supported Methods: GET HEAD POST
+| ssl-cert: Subject: commonName=www.example.com
+| Issuer: commonName=www.example.com
+| Public Key type: rsa
+| Public Key bits: 1024
+| Signature Algorithm: sha1WithRSAEncryption
+| Not valid before: 2015-09-16T10:45:03
+| Not valid after:  2025-09-13T10:45:03
+| MD5:   3c16:3b19:87c3:42ad:6634:c1c9:d0aa:fb97
+| SHA-1: ef0c:5fa5:931a:09a5:687c:a2c2:80c4:c792:07ce:f71b
+| -----BEGIN CERTIFICATE-----
+| MIIBqzCCARQCCQCgSfELirADCzANBgkqhkiG9w0BAQUFADAaMRgwFgYDVQQDDA93
+| d3cuZXhhbXBsZS5jb20wHhcNMTUwOTE2MTA0NTAzWhcNMjUwOTEzMTA0NTAzWjAa
+| MRgwFgYDVQQDDA93d3cuZXhhbXBsZS5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0A
+| MIGJAoGBANlxG/38e8Dy/mxwZzBboYF64tu1n8c2zsWOw8FFU0azQFxv7RPKcGwt
+| sALkdAMkNcWS7J930xGamdCZPdoRY4hhfesLIshZxpyk6NoYBkmtx+GfwrrLh6mU
+| yvsyno29GAlqYWfffzXRoibdDtGTn9NeMqXobVTTKTaR0BGspOS5AgMBAAEwDQYJ
+| KoZIhvcNAQEFBQADgYEASfG0dH3x4/XaN6IWwaKo8XeRStjYTy/uBJEBUERlP17X
+| 1TooZOYbvgFAqK8DPOl7EkzASVeu0mS5orfptWjOZ/UWVZujSNj7uu7QR4vbNERx
+| ncZrydr7FklpkIN5Bj8SYc94JI9GsrHip4mpbystXkxncoOVESjRBES/iatbkl0=
+|_-----END CERTIFICATE-----
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Oct 28 02:38:06 2025 -- 1 IP address (1 host up) scanned in 106.98 seconds

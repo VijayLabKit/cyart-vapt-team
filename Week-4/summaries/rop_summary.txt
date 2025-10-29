@@ -1,0 +1,1 @@
+Performed a ROP-based ASLR bypass on a local vulnerable binary, constructed chain of gadgets from libc to pivot stack and execute /bin/sh, used ret2libc and ROPgadget to assemble payload, achieved stable shell despite ASLR, documented gadget offsets, exploit script, and mitigation recommendations. Reviewed debugging logs and proof artifacts.
