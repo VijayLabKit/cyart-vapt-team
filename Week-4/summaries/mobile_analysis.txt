@@ -1,0 +1,1 @@
+Installed and ran MobSF locally, uploaded a vulnerable APK for static analysis, and generated a detailed report. Decompiled the app using jadx and apktool to find hard-coded secrets. Performed dynamic checks on an emulator with adb and Burp; optionally used Frida to hook authentication functions. Exported reports and PoCs for remediation.

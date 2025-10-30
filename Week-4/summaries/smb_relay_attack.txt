@@ -1,0 +1,1 @@
+Performed a practical SMB Relay attack by identifying a host with SMB signing disabled, using Responder to capture authentication requests, and relaying hashes via ntlmrelayx. Successfully established an SMB client shell and gained access to the victim system. Demonstrated network-based lateral movement and highlighted defenses like SMB signing and NTLM disablement.
