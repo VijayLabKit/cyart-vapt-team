@@ -1,104 +1,44 @@
-# CYART VAPT Team - Week 2 Deliverables
+# CYART VAPT Internship — Ishan Chowdhury
 
-**Author:** Ishan Chowdhury  
-**Role:** VAPT Intern  
-**Week:** 2  
-
----
-
-## Overview
-
-This repository contains all the documentation, scan results, proof-of-concept, reports, and evidence collected during Week 2 of the VAPT internship. Tasks include vulnerability scanning, reconnaissance, exploitation, post-exploitation, and a full VAPT capstone project simulation on Metasploitable2 and DVWA.
+**Author:** Ishan Chowdhury
+**Role:** VAPT Intern
 
 ---
 
-## Folder Structure
+## Introduction
 
-### CSV Files
-- `scans_192-168-132-135.csv` — Nmap scan results in CSV format.
+Hello! 👋 I’m **Ishan Chowdhury**, and this repository contains **all my internship deliverables** completed during my time at **CyArt LLP**.
+It includes documentation, reports, scans, proof-of-concepts, screenshots, and notes from **multiple weeks and tasks** throughout the internship — not just a single week.
 
-### DOCX Files
-- `VAPT Report.docx` — Comprehensive VAPT report.
-- `report_vulnweb.docx` — Recon and asset mapping for `vulnweb.com`.
-- `report_192-168-132-135.docx` — Nmap and Nikto scan analysis.
-
-### Email
-- `escalation_email_192-168-132-135.docx` — 100-word PoC escalation email to developers.
-
-### Notes
-- `VAPT_2.txt` — Notes and observations from Week 2.
-
-### Remediation Checklist
-- `remediation_checklist_192-168-132-135.md` — Prioritized remediation steps.
-
-### Screenshots
-Screenshots of scan outputs and tools usage:
-- `Screenshot 2025-10-08 181848.png`
-- `Screenshot 2025-10-08 221210.png`
-- ...
-- `Screenshot 2025-10-09 151050.png`  
-
-### Summary
-- `exploit_summary_cyart.docx` — Exploitation results.
-- `non-technical_summary.docx` — 100-word summary for management.
-- `recon_summary_cyart.docx` — 50-word reconnaissance summary.
-
-### TXT Files
-- `dig_cyart.txt` — DNS dig outputs.
-- `nikto_cyart.txt` — Nikto web scan results.
-- `nmap_cyart_allport.txt` — Full Nmap TCP port scan.
-- `nmap_cyart_basic.txt` — Nmap basic service/version scan.
-- `nmap_cyart_vuln.txt` — Nmap scripts scan output.
-- `remediation.txt` — Notes for remediation actions.
-- `reverse_dns_cyart.txt` — Reverse DNS lookups.
-- `subfinder_cyart.txt` — Subfinder subdomain enumeration.
-- `sublist3r_cyart.txt` — Sublist3r subdomain enumeration.
-- `whatweb_cyart.txt` — Website technology stack.
-- `whois_cyart.txt` — WHOIS lookups.
+This repository serves as a comprehensive archive of my learning, experiments, and outputs as part of the **Vulnerability Assessment and Penetration Testing (VAPT)** internship program under CyArt.
 
 ---
 
-## Tasks Covered
+## About CyArt
 
-1. **Vulnerability Scanning**
-   - Tools: Nmap, Nikto, OpenVAS.
-   - Activities: Full TCP port scans, version detection, vulnerability prioritization, PoC email.
-   - Outputs: CSV, DOCX, TXT, and email files.
+**CyArt LLP** is a cybersecurity and AI-driven technology company providing services and training in:
 
-2. **Reconnaissance**
-   - Tools: Maltego, Shodan, Sublist3r, Amass.
-   - Activities: Asset mapping, subdomain enumeration, tech stack identification.
-   - Outputs: Recon summary DOCX, TXT files.
+* Offensive Security (Red Teaming & VAPT)
+* Digital Forensics and Incident Response (DFIR)
+* Security Operations (SOC & Threat Intelligence)
+* AI, Data Analytics, and Automation Solutions
 
-3. **Exploitation**
-   - Tools: Metasploit, Burp Suite, sqlmap.
-   - Activities: Exploit simulations on Metasploitable2.
-   - Outputs: Exploit summary DOCX, screenshots.
+CyArt focuses on bridging the gap between academic learning and industry-grade cybersecurity skills through **hands-on internships and real-world projects**.
 
-4. **Post-Exploitation**
-   - Tools: Meterpreter, Volatility.
-   - Activities: Privilege escalation attempts, hash collection (Windows 10 local VM).
-   - Outputs: Screenshots and notes (VAPT_2.txt).
-
-5. **Capstone Project: Full VAPT Cycle**
-   - Tools: DVWA, Kali Linux, Metasploit, sqlmap.
-   - Activities: SQL Injection on DVWA, log OpenVAS findings, remediation recommendations.
-   - Outputs: PTES report DOCX (200-word), non-technical summary DOCX (100-word).
+Learn more about CyArt here:
+🌐 [https://www.cyart.io](https://www.cyart.io)
 
 ---
 
-## Key Findings
+## Repository Purpose
 
-- Multiple open ports identified via Nmap (21, 22, 23, 25, 53, 80, 111, 139, 445, 3306, etc.).
-- Web services running outdated versions (Apache 2.2.8, ProFTPD 1.3.1, MySQL 5.0.51a).
-- SQL Injection vulnerability discovered on DVWA (`http://192.168.132.130/dvwa/index.php`).
-- Subdomains and exposed services identified for `vulnweb.com`.
-- Exploitation tests on Metasploitable2 were successful for certain modules (Tomcat, FTP, SSH).
+This repository is maintained to document my progress, practical exercises, and final deliverables from the internship.
+It includes organized folders for different activities such as reconnaissance, vulnerability scanning, exploitation, and remediation — each labeled and timestamped for clarity.
 
 ---
 
-## How to Use
+## Contact
 
-1. Clone the repository:
-```bash
-git clone https://github.com/VijayLabKit/cyart-vapt-team.git
+If you have any questions about the content or need clarification regarding any deliverable, feel free to open an issue in this repository or contact me directly.
+
+**Ishan Chowdhury — VAPT Intern, CyArt LLP**
