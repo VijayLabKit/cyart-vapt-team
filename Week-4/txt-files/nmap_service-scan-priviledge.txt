@@ -1,0 +1,13 @@
+# Nmap 7.95 scan initiated Thu Oct 30 04:21:33 2025 as: /usr/lib/nmap/nmap -sV -oN nmap_service-scan-priviledge.txt 192.168.132.140
+Nmap scan report for 192.168.132.140
+Host is up (0.0016s latency).
+Not shown: 986 filtered tcp ports (no-response), 10 filtered tcp ports (host-prohibited)
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.4 (protocol 2.0)
+80/tcp   open  http    Apache httpd 2.4.6 ((CentOS) PHP/5.4.16)
+111/tcp  open  rpcbind 2-4 (RPC #100000)
+2049/tcp open  nfs_acl 3 (RPC #100227)
+MAC Address: 00:0C:29:00:DC:6D (VMware)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Oct 30 04:21:46 2025 -- 1 IP address (1 host up) scanned in 13.01 seconds

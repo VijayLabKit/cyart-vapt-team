@@ -1,0 +1,1 @@
+Conducted reconnaissance using Nmap on the Escalate My Privileges VM and discovered a hidden /phpbash.php shell. Gained initial access as Apache, found credentials, and escalated privileges to user armour. Leveraged SUID-enabled Python3 binary to obtain root access and retrieve the final flag, demonstrating vertical privilege escalation.
