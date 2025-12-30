@@ -49,17 +49,29 @@ Alert & Vulnerability Reporting
 
 📂 Project Structure
 network_vapt/
+
 ├── config/ 
+
 │   └── mongo.py 
+
 ├── ingest/ 
+
 │   ├── network_parser.py 
+
 │   └── dns_parser.py 
+
 ├── detect/ 
+
 │   └── detector.py 
+
 ├── main_ingest.py 
+
 ├── main_detect.py 
+
 ├── requirements.txt 
+
 ├── README.md 
+
 
 🔄 Workflow Explanation
 1️⃣ Log Ingestion
