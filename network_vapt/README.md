@@ -1,10 +1,15 @@
 Network VAPT – Log Ingestion, Detection & Vulnerability Mapping
 
 Author: Ishan Chowdhury
+
 Position: VAPT Intern
+
 Organization: CyArt
+
 Platform: Kali Linux
+
 Database: MongoDB Atlas
+
 
 📌 Project Overview
 
