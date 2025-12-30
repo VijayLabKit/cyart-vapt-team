@@ -1,0 +1,4 @@
+pymongo
+paramiko
+python-dotenv
+requests

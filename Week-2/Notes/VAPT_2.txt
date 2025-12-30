@@ -22,3 +22,4 @@ Nikto Scan Result:
 command - nikto -h http://192.168.132.135:80/dvwa/login.php -output nikto_cyart.txt
 
 Findings:
+Found http://192.168.132.135/backup.tar with interesting backup 
