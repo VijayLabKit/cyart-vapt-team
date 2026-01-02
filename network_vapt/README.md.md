@@ -1,16 +1,12 @@
 Network VAPT – Log Ingestion, Detection & Vulnerability Mapping
 
-Author: Ishan Chowdhury
-Position: VAPT Intern
-Organization: CyArt
-Platform: Kali Linux
-Database: MongoDB Atlas
+Author: Ishan ChowdhuryPosition: VAPT InternOrganization: CyArtPlatform: Kali LinuxDatabase: MongoDB Atlas
 
 📌 Project Overview
 
-This project implements a Network-based Vulnerability Assessment & Penetration Testing (VAPT) pipeline designed to collect raw network logs, normalize and store them centrally, analyze them for suspicious behavior, and prepare the data for vulnerability correlation using the NVD (National Vulnerability Database).
+This project implements a modular Network-based Vulnerability Assessment & Penetration Testing (VAPT) pipeline. It collects raw network logs from Linux systems, stores them securely in MongoDB Atlas, analyzes them for suspicious behavior, and prepares the data for CVE correlation using the National Vulnerability Database (NVD).
 
-The system follows a SOC-style architecture, separating ingestion, detection, and vulnerability enrichment into clear, auditable stages.
+The architecture follows SOC-style principles, separating ingestion, detection, and enrichment into distinct, auditable stages.
 
 🎯 Objectives
 
@@ -26,122 +22,124 @@ Provide centralized visibility for security analysis
 
 🏗️ Architecture Overview
 
-The architecture consists of the following major components:
+Components:
 
-Log Source (Linux Network Logs)
+Log Sources: Linux network logs (connections, neighbor discovery, route updates)
 
-Ingestion Engine (Python on Kali Linux)
+Ingestion Engine: Python scripts on Kali Linux using SSH
 
-Central Database (MongoDB Atlas)
+Central Database: MongoDB Atlas (logs, alerts, vulns collections)
 
-Detection Engine
+Detection Engine: Port scan detection via behavioral analysis
 
-NVD / CVE Matching Layer
+Enrichment Layer: NVD API integration for CVE matching
 
-Alert & Vulnerability Reporting
+Reporting: Alert summaries and vulnerability findings
 
-📎 Refer to the architecture diagram included in this repository for a visual overview.
+Refer to POC/diagrams/network_vapt_architecture.png for the full architecture diagram.
 
 📂 Project Structure
+
 network_vapt/
 ├── config/
-│   └── mongo.py
+│   ├── mongo.py
+│   └── mongo_alerts.py
 ├── ingest/
-│   ├── network_parser.py
+│   ├── main_ingest.py
+│   └── network_parser.py
 │   └── dns_parser.py
 ├── detect/
 │   └── detector.py
-├── main_ingest.py
+├── enrich/
+│   └── main_enrich.py
 ├── main_detect.py
 ├── requirements.txt
-├── README.md
+├── POC/
+│   ├── screenshots/
+│   └── diagrams/
+└── README.md
 
 🔄 Workflow Explanation
+
 1️⃣ Log Ingestion
 
-Network logs are collected from Linux systems (e.g. ss, netstat, connection logs)
+SSH to remote log server
 
-Logs are ingested as raw entries
+Fetch connections_*.log files
 
-Each log entry includes:
+Parse and normalize entries
 
-raw log line
+Insert into logs collection
 
-log_type (NETWORK)
+Each log includes:
+
+Raw log line
+
+log_type: NETWORK
 
 Timestamp (server-side)
 
-The ingestion process ensures no data loss and preserves original logs for forensic analysis.
-
 2️⃣ Centralized Storage (MongoDB Atlas)
 
-All logs are stored in the network_vapt.logs collection
+Logs stored in network_vapt.logs
 
-Database is cloud-hosted using MongoDB Atlas
+Verified ingestion of 40,000+ entries
 
-Verified ingestion of ~10,000 log entries
-
-This ensures:
-
-Persistence
-
-Scalability
-
-Remote access for SOC-style monitoring
+Ensures persistence, scalability, and remote SOC-style access
 
 3️⃣ Detection Engine
 
-Detection is performed on stored logs, not live streams
-
-The engine scans logs for behavioral indicators such as:
-
-Repeated connections
+Scans stored logs for behavioral indicators:
 
 Abnormal port usage
 
-Suspicious network patterns
+Repeated connections
 
-Detection results are:
+Triggers PORT_SCAN alerts
 
-Correlated internally
+Alerts stored in alerts collection
 
-Designed to avoid duplicate alerts
+Deduplication via upsert logic
 
-Stored separately from raw logs
+4️⃣ NVD / CVE Enrichment
 
-4️⃣ NVD / CVE Readiness
+Maps ports to services
 
-The project includes an NVD matcher design
+Identifies CPEs
 
-Logs and detections are structured to support:
+Queries NVD API for CVEs
 
-Port-to-service mapping
-
-CPE identification
-
-CVE lookups via NVD API
-
-ℹ️ NVD integration is verified at the structural level and ready for live API correlation.
+Stores results in vulns collection
 
 🗄️ Database Collections
-Collection	Purpose
-logs	Raw network logs
-alerts	Detection results
-vulns	CVE/NVD matches
 
-All collections were verified manually using MongoDB Atlas Data Explorer.
+Collection
+
+Purpose
+
+logs
+
+Raw network logs
+
+alerts
+
+Detection results
+
+vulns
+
+CVE/NVD matches
+
+All collections verified using MongoDB Atlas Data Explorer.
 
 ✅ Verification & Validation
 
-The following checks were completed successfully:
-
-✔ Logs successfully ingested (9968+ entries)
+✔ Logs successfully ingested (40,000+ entries)
 
 ✔ Logs visible in MongoDB Atlas
 
 ✔ Detection engine runs without errors
 
-✔ No false vulnerabilities generated
+✔ Alerts generated and deduplicated
 
 ✔ Database schema matches detection logic
 
@@ -150,22 +148,30 @@ The following checks were completed successfully:
 ✔ Secure DB connection verified
 
 🧪 Commands to Run the Project (Kali Linux)
+
 1️⃣ Setup Virtual Environment
+
 python3 -m venv venv
 source venv/bin/activate
 
 2️⃣ Install Dependencies
+
 pip install -r requirements.txt
 
 3️⃣ Set Environment Variables
+
 export VAPT_DB_USER="your_db_user"
 export VAPT_DB_PASSWORD="your_db_password"
 export VAPT_DB_HOST="your_cluster_url"
+export DB_NAME="network_vapt"
+export LOG_SERVER_PASSWORD="your_ssh_password"
 
 4️⃣ Run Log Ingestion
-python3 main_ingest.py
+
+python3 -m ingest.main_ingest
 
 5️⃣ Verify Logs
+
 python3 - <<EOF
 from config.mongo import logs_col
 print(logs_col.count_documents({}))
@@ -173,16 +179,22 @@ print(logs_col.find_one())
 EOF
 
 6️⃣ Run Detection
+
 python3 main_detect.py
+
+7️⃣ Check Alerts
+
+python3 config/mongo_alerts.py
+
+8️⃣ Run Enrichment (Optional)
+
+python3 -m enrich.main_enrich
 
 🔍 Manual Verification (MongoDB Atlas)
 
 Login to MongoDB Atlas
 
-Navigate to:
-
-cyartcluster → network_vapt → logs
-
+Navigate to: cyartcluster → network_vapt → logs
 
 Confirm:
 
@@ -195,12 +207,15 @@ Correct log_type
 🚀 Final Status
 
 ✅ Log Ingestion: Completed
+
 ✅ Centralized Storage: Completed
+
 ✅ Detection Engine: Completed
+
 ✅ MongoDB Atlas Verification: Completed
+
 ✅ NVD Readiness: Completed
 
 📌 Conclusion
 
-This project demonstrates a production-style Network VAPT pipeline with real-world SOC design principles.
-It provides a strong foundation for behavioral detection, vulnerability assessment, and future threat correlation using NVD.
+This project demonstrates a production-grade Network VAPT pipeline with modular SOC-style architecture. It enables scalable log ingestion, behavioral detection, and vulnerability mapping using open-source tools and cloud infrastructure. The system is ready for continuous monitoring and future threat correlation via NVD.

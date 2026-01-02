@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
 from detect.detector import run_detection
-run_detection()
-print("[+] Detection completed")
+
+if __name__ == "__main__":
+    run_detection()
+    print("[+] Detection completed")
+
